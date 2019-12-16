@@ -39,10 +39,16 @@ const parseRobotsTxt = (robotTxt) => {
             default:
                 break;
         }
-
     }
 }
 
+const retrieveRobotTxt = async (page, url) => {
+   const robotsTxtPage = page;
+   await robotsTxtPage.goto(url + '/robots.txt');
+   return textVal = await robotsTxtPage.$eval('body', el => el.innerText);
+}
+
 module.exports = {
-    parseRobotsTxt
+    parseRobotsTxt,
+    retrieveRobotTxt
 }
