@@ -43,9 +43,17 @@ const parseRobotsTxt = (robotTxt) => {
 }
 
 const retrieveRobotTxt = async (page, url) => {
-   const robotsTxtPage = page;
-   await robotsTxtPage.goto(url + '/robots.txt');
-   return textVal = await robotsTxtPage.$eval('body', el => el.innerText);
+    const robotsTxtPage = page;
+    try {
+        await robotsTxtPage.goto(url + '/robots.txt');
+    } catch (e) {
+        return false;
+    }
+    return textVal = await robotsTxtPage.$eval('body', el => el.innerText);
+}
+
+const validateUserAgent = (agent) => {
+
 }
 
 module.exports = {
